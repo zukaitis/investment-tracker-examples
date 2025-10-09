@@ -1,0 +1,7 @@
+---
+name: Gold
+symbol: GC=F
+group: Commodities
+display_price: True
+data:
+  - { date: 2025-03-06, investment: +1000, amount: 0.33 }
