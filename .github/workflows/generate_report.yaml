@@ -32,14 +32,15 @@ jobs:
           echo "TIME=$(date '+%T')" >> $GITHUB_OUTPUT
           echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_OUTPUT
           echo "REPORT_NAME=Report_$(date -I).html" >> $GITHUB_OUTPUT
-      - name: Rename Output File
+      - name: Rename output file
         run: mv report.html ${{ steps.env-var.outputs.REPORT_NAME }}
       - name: Delete older releases
-        uses: dev-drprasad/delete-older-releases@v0.1.0
+        uses: jay2610/delete-older-releases@1.4.0
         with:
-            keep_latest: 6  # specify how many old releases you want to keep here
+          keep_latest: 6
+          delete_tags: true
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
