@@ -25,12 +25,12 @@ jobs:
       - name: Generate Report
         run: ./upstream/generate_report.py --input_dir .
       - name: Set Environment Variables
-        id: env_vars
+        id: env_var
         run: |
           echo "DATE=$(date -I)" >> $GITHUB_OUTPUT >> $GITHUB_ENV
           echo "TIME=$(date '+%T')" >> $GITHUB_OUTPUT >> $GITHUB_ENV
           echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_OUTPUT >> $GITHUB_ENV
-          echo "REPORT_NAME=Report_$DATE.html" >> $GITHUB_OUTPUT >> $GITHUB_ENV
+          echo "REPORT_NAME=Report_$(date -I).html" >> $GITHUB_OUTPUT >> $GITHUB_ENV
       - name: Rename Output File
         run: mv report.html $REPORT_NAME
       - name: Delete older releases
