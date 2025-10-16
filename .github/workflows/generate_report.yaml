@@ -26,14 +26,14 @@ jobs:
       - name: Generate Report
         run: ./upstream/generate_report.py --input_dir .
       - name: Set Environment Variables
-        id: env_var
+        id: env-var
         run: |
-          echo "DATE=$(date -I)" >> $GITHUB_OUTPUT >> $GITHUB_ENV
-          echo "TIME=$(date '+%T')" >> $GITHUB_OUTPUT >> $GITHUB_ENV
-          echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_OUTPUT >> $GITHUB_ENV
-          echo "REPORT_NAME=Report_$(date -I).html" >> $GITHUB_OUTPUT >> $GITHUB_ENV
+          echo "DATE=$(date -I)" >> $GITHUB_OUTPUT
+          echo "TIME=$(date '+%T')" >> $GITHUB_OUTPUT
+          echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_OUTPUT
+          echo "REPORT_NAME=Report_$(date -I).html" >> $GITHUB_OUTPUT
       - name: Rename Output File
-        run: mv report.html $REPORT_NAME
+        run: mv report.html ${{ steps.env-var.outputs.REPORT_NAME }}
       - name: Delete older releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         with:
@@ -43,9 +43,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.env_var.outputs.REPORT_NAME }}
-          name: Report ${{ steps.env_var.outputs.DATE}} ${{steps.env_var.outputs.TIME }}
-          tag_name: ${{ steps.env_var.outputs.TAG }}
+          files: ${{ steps.env-var.outputs.REPORT_NAME }}
+          name: Report ${{ steps.env-var.outputs.DATE}} ${{steps.env-var.outputs.TIME }}
+          tag_name: ${{ steps.env-var.outputs.TAG }}
       # - name: Create Release
       #   id: create_release
       #   uses: actions/create-release@v1
