@@ -46,23 +46,3 @@ jobs:
           files: ${{ steps.env-var.outputs.REPORT_NAME }}
           name: Report ${{ steps.env-var.outputs.DATE}} ${{steps.env-var.outputs.TIME }}
           tag_name: ${{ steps.env-var.outputs.TAG }}
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ steps.get_tag.outputs.TAG }}
-      #     release_name: Report ${{ steps.get_datetime.outputs.DATETIME }}
-      #     draft: false
-      #     prerelease: false
-      # - name: Upload Release Asset
-      #   id: upload-release-asset
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: ./report.html
-      #     asset_name: Report_${{ steps.get_date.outputs.DATE }}.html
-      #     asset_content_type: text/html
