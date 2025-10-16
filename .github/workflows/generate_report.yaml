@@ -27,9 +27,9 @@ jobs:
       - name: Set Environment Variables
         id: env_vars
         run: |
-          echo "DATE=$(date -I)" >> $GITHUB_OUTPUT
-          echo "TIME=$(date '+%T')" >> $GITHUB_OUTPUT
-          echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_OUTPUT
+          echo "DATE=$(date -I)" >> $GITHUB_OUTPUT >> $GITHUB_ENV
+          echo "TIME=$(date '+%T')" >> $GITHUB_OUTPUT >> $GITHUB_ENV
+          echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_OUTPUT >> $GITHUB_ENV
           echo "REPORT_NAME=Report_$DATE.html" >> $GITHUB_OUTPUT >> $GITHUB_ENV
       - name: Rename Output File
         run: mv report.html $REPORT_NAME
