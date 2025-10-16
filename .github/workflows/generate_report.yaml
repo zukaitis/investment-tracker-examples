@@ -31,8 +31,6 @@ jobs:
           echo "TIME=$(date '+%T')" >> $GITHUB_ENV
           echo "TAG=$(date '+%FT%H%M%S')" >> $GITHUB_ENV
           echo "REPORT_NAME=Report_$DATE.html" >> $GITHUB_ENV
-      - name: Set Report Name
-
       - name: Rename Output File
         run: mv report.html $REPORT_NAME
       - name: Delete older releases
